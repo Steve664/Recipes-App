@@ -1,0 +1,3 @@
+let result = document.getElementById("result");
+let searchBtn = document.getElementById("searchBtn");
+let url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
