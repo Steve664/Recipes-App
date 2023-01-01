@@ -43,34 +43,29 @@ function displayMeal(myMeal) {
     }
     console.log(ingredients);
     result.innerHTML = `
-<img src=${myMeal.strMealThumb}>
+<img src=${myMeal.strMealThumb} class="img-responsive img-rounded" alt="${myMeal.strMeal}" width="304" height="236">
 <div class="details">
     <h2>${myMeal.strMeal}</h2>
     <h4>${myMeal.strArea}</h4>
 </div>
-<div id="ingredient-con"></div>
+<div id="ingredient"></div>
 <div id="recipe">
-    <button id="hide-recipe">X</button>
     <pre id="instructions">${myMeal.strInstructions}</pre>
 </div>
-<button id="show-recipe">View Recipe</button>
+<button id="saveRecipe">Save Recipe</button>
 `;
-    let ingredientCon = document.getElementById("ingredient-con");
+    let ingredientCon = document.getElementById("ingredient");
     let parent = document.createElement("ul");
     let recipe = document.getElementById("recipe");
-    let hideRecipe = document.getElementById("hide-recipe");
-    let showRecipe = document.getElementById("show-recipe");
+    let saveRecipe = document.getElementById("saveRecipe");
     ingredients.forEach((i) => {
         let child = document.createElement("li");
         child.innerText = i;
         parent.appendChild(child);
         ingredientCon.appendChild(parent);
     });
-    hideRecipe.addEventListener("click", () => {
-        recipe.style.display = "none";
-    });
-    showRecipe.addEventListener("click", () => {
-        recipe.style.display = "block";
+    saveRecipe.addEventListener("click", () => {
+        //todo
     });
 }
 

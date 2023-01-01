@@ -4,3 +4,18 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+ul {
+  font-size: 1em;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.8em 1.1em;
+  padding: 1.2em 0 0 1.2em;
+  color: #303040;
+  text-transform: capitalize;
+}
+img {
+  display: block;
+  width: 50%;
+  margin: 1.8em auto 0 auto;
+}
