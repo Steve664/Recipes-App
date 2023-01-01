@@ -5,6 +5,12 @@ let jsonUrl = "http://localhost:3000/meals"
 let term = document.getElementById("input")
 let current0bj;
 
+document.addEventListener('DOMContentLoaded', () => {
+    fetch(jsonUrl)
+        .then(resp => resp.json())
+        .then(data => data.forEach(element => renderFav(element)))
+
+})
 
 searchBtn.addEventListener("click", () => {
     startUp();
@@ -21,9 +27,7 @@ async function startUp() {
     }
 };
 
-fetch(jsonUrl)
-    .then(resp => resp.json())
-    .then(data => data.forEach(element => renderFav(element)))
+
 
 function renderFav(element) {
     let details = document.getElementById('details');
