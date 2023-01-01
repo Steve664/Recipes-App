@@ -5,8 +5,11 @@ let jsonUrl = "http://localhost:3000/meals"
 let term = document.getElementById("input")
 
 
-searchBtn.addEventListener("click", async () => {
+searchBtn.addEventListener("click", () => {
+    startUp();
+})
 
+async function startUp() {
     const search = term.value;
     const meals = await getMeal(search);
 
@@ -15,9 +18,21 @@ searchBtn.addEventListener("click", async () => {
             displayMeal(meal);
         });
     }
-});
+};
 
 
+
+fetch(jsonUrl)
+    .then(resp => resp.json())
+    .then(data => data.forEach(element => renderFav(element)))
+
+function renderFav(element) {
+    let details = document.getElementById('details');
+    let item = document.createElement('div')
+    item.innerHTML = `<span>Name: ${element.strMeal} Cuisine: ${element.strArea}</span>`
+    item.addEventListener('click', () => displayMeal(element))
+    details.appendChild(item)
+}
 
 async function getMeal(input) {
     const resp = await fetch(
@@ -82,10 +97,8 @@ function saveMeal(myMeal) {
             "Content-Type": "application/json",
             Accept: "application/json",
         },
-        body: JSON.stringify({
-            strMeal: myMeal.strMeal,
-            strArea: myMeal.strArea,
-        })
+        body: JSON.stringify(myMeal)
     })
         .then((response) => response.json())
 }
+
