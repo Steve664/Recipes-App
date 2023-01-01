@@ -25,3 +25,14 @@ pre {
   font-size: 1em;
   color: #303040;
 }
+.Favorites {
+  position: relative;
+  display: block;
+  padding: 0.8em 0.8em 0.8em 4em;
+  margin: 0.5em 0;
+  background: #dad2ca;
+  color: #444;
+  text-decoration: none;
+  border-radius: 0.3em;
+  transition: 0.3s ease-out;
+}

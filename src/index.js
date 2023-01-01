@@ -29,7 +29,7 @@ fetch(jsonUrl)
 function renderFav(element) {
     let details = document.getElementById('details');
     let item = document.createElement('div')
-    item.innerHTML = `<span>Name: ${element.strMeal} Cuisine: ${element.strArea}</span>`
+    item.innerHTML = `<span class="Favorites">Name: ${element.strMeal} Cuisine: ${element.strArea}</span>`
     item.addEventListener('click', () => displayMeal(element))
     details.appendChild(item)
 }
