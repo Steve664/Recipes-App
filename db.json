@@ -1,3 +1,9 @@
 {
-    "meals": []
+    "meals": [
+        {
+            "strMeal": "Lamb Tzatziki Burgers",
+            "strArea": "Greek",
+            "id": 1
+        }
+    ]
 }

@@ -70,11 +70,22 @@ function displayMeal(myMeal) {
         ingredientCon.appendChild(parent);
     });
     saveRecipe.addEventListener("click", e => {
-        e.preventDefault()
+        e.preventDefault();
         saveMeal(myMeal);
     });
 }
 
 function saveMeal(myMeal) {
-    fetch(jsonUrl)
+    fetch(jsonUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        body: JSON.stringify({
+            strMeal: myMeal.strMeal,
+            strArea: myMeal.strArea,
+        })
+    })
+        .then((response) => response.json())
 }
