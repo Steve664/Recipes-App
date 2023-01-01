@@ -18,12 +18,15 @@ img {
   display: block;
   margin: 1.8em auto 0 auto;
 }
-pre {
+#instructions {
   white-space: pre-wrap;
   word-wrap: break-word;
-  padding: 2.5em 1.2em 1.2em 1.2em;
-  font-size: 1em;
-  color: #303040;
+  background: #eee;
+  border-left: 10px solid #9684a3;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: left;
+  font-size: medium;
 }
 .Favorites {
   position: relative;
