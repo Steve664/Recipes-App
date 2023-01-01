@@ -20,8 +20,6 @@ async function startUp() {
     }
 };
 
-
-
 fetch(jsonUrl)
     .then(resp => resp.json())
     .then(data => data.forEach(element => renderFav(element)))
@@ -76,7 +74,6 @@ function displayMeal(myMeal) {
 `;
     let ingredientCon = document.getElementById("ingredient");
     let parent = document.createElement("ul");
-    let recipe = document.getElementById("recipe");
     let saveRecipe = document.getElementById("saveRecipe");
     ingredients.forEach((i) => {
         let child = document.createElement("li");
