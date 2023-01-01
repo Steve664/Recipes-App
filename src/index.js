@@ -26,7 +26,10 @@ async function getMeal(input) {
 
     const respData = await resp.json();
     const meals = respData.meals;
-
+    if (meals === null) {
+        result.innerHTML = '<h3>Invalid Input</h3>'
+    }
+    console.log(meals)
     return meals;
 }
 
@@ -66,9 +69,12 @@ function displayMeal(myMeal) {
         parent.appendChild(child);
         ingredientCon.appendChild(parent);
     });
-    saveRecipe.addEventListener("click", () => {
-        //todo
+    saveRecipe.addEventListener("click", e => {
+        e.preventDefault()
+        saveMeal(myMeal);
     });
 }
 
-
+function saveMeal(myMeal) {
+    fetch(jsonUrl)
+}
