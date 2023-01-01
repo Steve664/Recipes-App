@@ -3,6 +3,7 @@ let searchBtn = document.getElementById("searchBtn");
 let url = "www.themealdb.com/api/json/v1/1/search.php?s=";
 let jsonUrl = "http://localhost:3000/meals"
 let term = document.getElementById("input")
+let current0bj;
 
 
 searchBtn.addEventListener("click", () => {
@@ -43,6 +44,7 @@ async function getMeal(input) {
         result.innerHTML = '<h3>Invalid Input</h3>'
     }
     console.log(meals)
+    current0bj = meals;
     return meals;
 }
 
@@ -97,5 +99,7 @@ function saveMeal(myMeal) {
         body: JSON.stringify(myMeal)
     })
         .then((response) => response.json())
+
+    displayMeal(current0bj)
 }
 
