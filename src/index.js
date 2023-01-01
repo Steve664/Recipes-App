@@ -1,7 +1,9 @@
 let result = document.getElementById("result");
 let searchBtn = document.getElementById("searchBtn");
 let url = "www.themealdb.com/api/json/v1/1/search.php?s=";
+let jsonUrl = "http://localhost:3000/meals"
 let term = document.getElementById("input")
+
 
 searchBtn.addEventListener("click", async () => {
 
