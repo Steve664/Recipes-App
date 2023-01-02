@@ -97,10 +97,12 @@ function displayMeal(myMeal) {
       </div>
     </div>
 <button id="saveRecipe">Save Recipe</button>
+<button id="randomRecipe">Random Recipe</button>
 `;
     let ingredientCon = document.getElementById("ingredient");
     let parent = document.createElement("ul");
     let saveRecipe = document.getElementById("saveRecipe");
+    let randomRecipe = document.getElementById("randomRecipe");
     ingredients.forEach((i) => {
         let child = document.createElement("li");
         child.innerText = i;
@@ -110,6 +112,11 @@ function displayMeal(myMeal) {
     saveRecipe.addEventListener("click", e => {
         e.preventDefault();
         saveMeal(myMeal);
+    });
+
+    randomRecipe.addEventListener("click", e => {
+        e.preventDefault();
+        getRandomMeal();
     });
 }
 

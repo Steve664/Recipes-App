@@ -42,3 +42,9 @@ img {
 .Favorites:hover {
   background: #e9e4e0;
 }
+input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+
+  box-sizing: border-box;
+}
