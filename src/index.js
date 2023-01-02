@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(resp => resp.json())
         .then(data => data.forEach(element => renderFav(element)))
 
-    let meal = getRandomMeal();
-    displayMeal(meal)
+    getRandomMeal();
 
 })
 
@@ -48,11 +47,8 @@ async function getRandomMeal() {
 
     const respData = await resp.json();
     const meals = respData.meals;
-    if (meals === null) {
-        result.innerHTML = '<h3>Invalid Input</h3>'
-    }
     console.log(meals)
-    return meals;
+    return displayMeal(meals);
 }
 
 async function getMeal(input) {
@@ -96,7 +92,7 @@ function displayMeal(myMeal) {
 </div>
     <div class="row">
       <h5>Video Recipe</h5>
-      <div class="videoWrapper">
+      <div class="video">
         <iframe width="420" height="315"
         src="https://www.youtube.com/embed/${myMeal.strYoutube.slice(-11)}">
         </iframe>
