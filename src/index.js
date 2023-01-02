@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(resp => resp.json())
         .then(data => data.forEach(element => renderFav(element)))
 
-    getRandomMeal();
+    getRandomMeal()
 
 })
 
@@ -40,15 +40,13 @@ function renderFav(element) {
     details.appendChild(item)
 }
 
-async function getRandomMeal() {
-    const resp = await fetch(
-        "https://www.themealdb.com/api/json/v1/1/random.php"
-    );
-
-    const respData = await resp.json();
-    const meals = respData.meals;
-    console.log(meals)
-    return displayMeal(meals);
+function getRandomMeal() {
+    fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+        .then(resp => resp.json())
+        .then(data => {
+            const meals = data.meals[0]
+            displayMeal(meals)
+        })
 }
 
 async function getMeal(input) {
