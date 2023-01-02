@@ -10,7 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(resp => resp.json())
         .then(data => data.forEach(element => renderFav(element)))
 
+    let meal = getRandomMeal();
+    displayMeal(meal)
+
 })
+
 
 searchBtn.addEventListener("click", () => {
     startUp();
@@ -35,6 +39,20 @@ function renderFav(element) {
     item.innerHTML = `<span class="Favorites">Name: ${element.strMeal}<br>Cuisine: ${element.strArea}</span>`
     item.addEventListener('click', () => displayMeal(element))
     details.appendChild(item)
+}
+
+async function getRandomMeal() {
+    const resp = await fetch(
+        "https://www.themealdb.com/api/json/v1/1/random.php"
+    );
+
+    const respData = await resp.json();
+    const meals = respData.meals;
+    if (meals === null) {
+        result.innerHTML = '<h3>Invalid Input</h3>'
+    }
+    console.log(meals)
+    return meals;
 }
 
 async function getMeal(input) {
@@ -76,6 +94,14 @@ function displayMeal(myMeal) {
 <div id="recipe">
     <pre id="instructions">${myMeal.strInstructions}</pre>
 </div>
+    <div class="row">
+      <h5>Video Recipe</h5>
+      <div class="videoWrapper">
+        <iframe width="420" height="315"
+        src="https://www.youtube.com/embed/${myMeal.strYoutube.slice(-11)}">
+        </iframe>
+      </div>
+    </div>
 <button id="saveRecipe">Save Recipe</button>
 `;
     let ingredientCon = document.getElementById("ingredient");
