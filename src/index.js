@@ -1,4 +1,4 @@
-let result = document.getElementById("result");
+let result = document.getElementById("output");
 let searchBtn = document.getElementById("searchBtn");
 let url = "www.themealdb.com/api/json/v1/1/search.php?s=";
 let jsonUrl = "http://localhost:3000/meals"
@@ -64,35 +64,31 @@ async function getMeal(input) {
     return meals;
 }
 
-function displayMeal(myMeal) {
-    let count = 1;
+function displayMeal(recipeObj) {
     let ingredients = [];
-    for (let i in myMeal) {
-        let ingredient = "";
-        let measure = "";
-        if (i.startsWith("strIngredient") && myMeal[i]) {
-            ingredient = myMeal[i];
-            measure = myMeal[`strMeasure` + count];
-            count += 1;
+    for (const key in recipeObj) {
+        if (key.startsWith("strIngredient") && recipeObj[key]) {
+            const ingredient = recipeObj[key];
+            const measure = recipeObj[key.replace("Ingredient", "Measure")];
             ingredients.push(`${measure} ${ingredient}`);
         }
     }
     console.log(ingredients);
     result.innerHTML = `
-<img src=${myMeal.strMealThumb} class="img-responsive img-rounded" alt="${myMeal.strMeal}" width="304" height="236">
+<img src=${recipeObj.strMealThumb} class="img-responsive img-rounded" alt="${recipeObj.strMeal}" width="304" height="236">
 <div class="details">
-    <h2>${myMeal.strMeal}</h2>
-    <h4>${myMeal.strArea}</h4>
+    <h2>${recipeObj.strMeal}</h2>
+    <h4>${recipeObj.strArea}</h4>
 </div>
 <div id="ingredient"></div>
 <div id="recipe">
-    <pre id="instructions">${myMeal.strInstructions}</pre>
+    <p id="instructions">${recipeObj.strInstructions}</p>
 </div>
     <div class="row">
       <h5>Video Recipe</h5>
       <div class="video">
         <iframe width="420" height="315"
-        src="https://www.youtube.com/embed/${myMeal.strYoutube.slice(-11)}">
+        src="https://www.youtube.com/embed/${recipeObj.strYoutube.slice(-11)}">
         </iframe>
       </div>
     </div>
@@ -111,7 +107,7 @@ function displayMeal(myMeal) {
     });
     saveRecipe.addEventListener("click", e => {
         e.preventDefault();
-        saveMeal(myMeal);
+        saveMeal(recipeObj);
     });
 
     randomRecipe.addEventListener("click", e => {
@@ -120,14 +116,14 @@ function displayMeal(myMeal) {
     });
 }
 
-function saveMeal(myMeal) {
+function saveMeal(recipeObj) {
     fetch(jsonUrl, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
         },
-        body: JSON.stringify(myMeal)
+        body: JSON.stringify(recipeObj)
     })
         .then((response) => response.json())
 
